@@ -249,6 +249,11 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Default\Index.cshtml" />
+    <Content Include="Views\Default\Experience.cshtml" />
+    <Content Include="Views\Default\Education.cshtml" />
+    <Content Include="Views\Default\Skills.cshtml" />
+    <Content Include="Views\Default\Hobbies.cshtml" />
+    <Content Include="Views\Default\Certificates.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
