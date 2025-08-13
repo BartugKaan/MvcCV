@@ -42,5 +42,22 @@ namespace MvcCV.Controllers
             var values = db.TBLCertificates.ToList();
             return PartialView(values);
         }
+
+        [HttpGet]
+        public PartialViewResult Contact()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public PartialViewResult Contact(TBLContact values)
+        {
+            values.Date = System.DateTime.Now;
+            db.TBLContact.Add(values);
+            db.SaveChanges();
+
+            return PartialView();
+        }
+
     }
 }

@@ -1,0 +1,28 @@
+﻿@using MvcCV.Models.Entity;
+@model List<TBLExperience>
+
+@{
+    ViewBag.Title = "GetExperience";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-md-12 p-5">
+    <h2>Add Experience</h2>
+    <form>
+        <label>Title</label>
+        <input type="text" name="Title" placeholder="Enter a Job Title" class="form-control" />
+        <br />
+        <label>Company Name</label>
+        <input type="text" name="Subtitle" placeholder="Enter a Company Name" class="form-control" />
+        <br />
+        <label>Description</label>
+        <textarea name="Description" placeholder="Enter a Job Description" class="form-control" rows="5"></textarea>
+        <br />
+        <label>Employment Period</label>
+        <input type="text" name="Date" placeholder="Enter An Employement Period" class="form-control" />
+        <br />
+        <button class="btn btn-success">Save</button>
+    </form>
+</div>
+
+
