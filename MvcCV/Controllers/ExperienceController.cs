@@ -1,11 +1,6 @@
 ﻿using MvcCV.Models.Entity;
 using MvcCV.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using WebGrease.Activities;
 
 namespace MvcCV.Controllers
 {
@@ -25,9 +20,9 @@ namespace MvcCV.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddExperience(TBLExperience experience)
+        public ActionResult AddExperience(TBLExperience responseExperience)
         {
-            experienceRepository.Add(experience);
+            experienceRepository.Add(responseExperience);
             return RedirectToAction("Index");
         }
 
@@ -42,6 +37,18 @@ namespace MvcCV.Controllers
         public ActionResult GetExperience(int id)
         {
             TBLExperience experience = experienceRepository.Find(x => x.ID == id);
+            return View(experience);
+        }
+
+        [HttpPost]
+        public ActionResult GetExperience(TBLExperience responseExperience)
+        {
+            TBLExperience experience = experienceRepository.Find(x => x.ID == responseExperience.ID);
+            experience.Title = responseExperience.Title;
+            experience.Subtitle = responseExperience.Subtitle;
+            experience.Description = responseExperience.Description;
+            experience.Date = responseExperience.Date;
+            experienceRepository.Update(experience);
             return View(experience);
         }
     }
