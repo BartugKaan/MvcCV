@@ -1,0 +1,19 @@
+﻿@using MvcCV.Models.Entity;
+@model TBLCertificates
+@{
+    ViewBag.Title = "AddCertificate";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-md-12 p-5">
+    <h2>Add Certificate</h2>
+    <form method="post">
+        <label>Title</label>
+        <input type="text" name="Description" placeholder="Enter a Certificate Name" class="form-control" />
+        <br />
+        <label>Date</label>
+        <input type="text" name="Date" placeholder="Enter a Date" class="form-control" />
+        <br />
+        <button class="btn btn-success">Save</button>
+    </form>
+</div>

@@ -1,0 +1,23 @@
+﻿@using MvcCV.Models.Entity;
+@model TBLCertificates
+@{
+    ViewBag.Title = "GetCertificate";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-md-12 p-5">
+    <h2>Update Certificate</h2>
+    <form method="post">
+        @Html.Label("Certificate ID")
+        @Html.TextBoxFor(x => x.ID, new { @class = "form-control", @readonly = "readonly" })
+        <br />
+        @Html.Label("Certificate Name")
+        @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+        <br />
+        @Html.Label("Certificate Date")
+        @Html.TextBoxFor(x => x.Date, new { @class = "form-control" })
+        <br />
+
+        <button class="btn btn-success">Save</button>
+    </form>
+</div>

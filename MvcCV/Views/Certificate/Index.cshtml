@@ -1,0 +1,65 @@
+﻿@using MvcCV.Models.Entity;
+@model List<TBLCertificates>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- /.col -->
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="/Certificate/AddCertificate" class="btn btn-outline-success">Add Certificate</a>
+                        <br />
+                        <div class="tab-pane mt-3" id="timeline">
+                            <!-- The timeline -->
+                            <div class="timeline timeline-inverse">
+                                <!-- timeline time label -->
+                                @foreach (var item in Model)
+                                {
+                                    <div class="time-label">
+                                        <span class="bg-success">
+                                            @item.Date
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <i class="fas fa-certificate bg-primary"></i>
+                                        <div class="timeline-item">
+                                            <div class="timeline-body">
+                                                @item.Description
+                                            </div>
+                                            <div class="timeline-footer">
+                                                <a href="/Certificate/GetCertificate/@item.ID" class="btn btn-primary">Edit</a>
+                                                <a href="/Certificate/Delete/@item.ID" class="btn btn-danger">Delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                <!-- END timeline item -->
+                            </div>
+
+                        </div>
+                    </div><!-- /.card-body -->
+
+                </div>
+                <!-- /.nav-tabs-custom -->
+
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
