@@ -1,0 +1,34 @@
+﻿@using MvcCV.Models.Entity;
+@model List<TBLHobby>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-md-12 p-5">
+    <h2>Hobby List</h2>
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Description Field One</th>
+            <th>Description Field Two</th>
+            <th>Actions</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.Description</td>
+                <td>@item.SubDescription</td>
+                <td class="col-md-2">
+                    <div>
+                        <a href="/Hobby/Delete/@item.ID" class="btn btn-danger">Delete</a>
+                        <a href="/Hobby/GetHobby/@item.ID" class="btn btn-warning">Edit</a>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+    <a href="/Hobby/AddHobby" class="btn btn-success">Add Experience</a>
+</div>

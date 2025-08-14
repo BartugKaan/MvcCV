@@ -1,0 +1,20 @@
+﻿@using MvcCV.Models.Entity;
+@model TBLHobby
+@{
+    ViewBag.Title = "AddHobby";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-md-12 p-5">
+    <h2>Add Hobby</h2>
+    <form method="post">
+        <label>Description Field One</label>
+        <textarea name="Description" placeholder="Enter a Hobby Text" class="form-control" rows="5"></textarea>
+        <br />
+        <label>Description Field Two</label>
+        <textarea name="SubDescription" placeholder="(Optional) Enter a Hobby Text" class="form-control" rows="5"></textarea>
+        <br />
+        <button class="btn btn-success">Save</button>
+    </form>
+</div>
+

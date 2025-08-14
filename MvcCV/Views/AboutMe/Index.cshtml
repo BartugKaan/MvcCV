@@ -1,25 +1,72 @@
-﻿
+﻿@using MvcCV.Models.Entity;
+@model TBLAbout
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "About Me";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>About Me Table </h2>
-<table class="table table-bordered">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>City</th>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td>Bartuğ</td>
-        <td>İstanbul</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>Kaan</td>
-        <td>Muğla</td>
-    </tr>
-</table>
+<div class="col-md-12 p-5">
+    <h2>About Me</h2>
+
+    @using (Html.BeginForm("Index", "AboutMe", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(x => x.ID)
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Name)
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Enter your name" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.LastName)
+            @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", placeholder = "Enter your last name" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Address)
+            @Html.TextBoxFor(x => x.Address, new { @class = "form-control", placeholder = "Enter your address" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Phone)
+            @Html.TextBoxFor(x => x.Phone, new { @class = "form-control", placeholder = "Enter your phone" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Mail)
+            @Html.TextBoxFor(x => x.Mail, new { @class = "form-control", placeholder = "Enter your email" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Description)
+            @Html.TextAreaFor(x => x.Description, new { @class = "form-control", rows = 5, placeholder = "Tell something about yourself" })
+        </div>
+
+        <div class="form-group">
+            <label>Profile Image</label>
+            <small class="form-text text-muted">Upload a file or paste an external image URL.</small>
+            <input type="file" name="ImageFile" accept="image/*" class="form-control" />
+            <div class="mt-2">or</div>
+            <input type="url" name="ExternalImageUrl" class="form-control mt-2" placeholder="https://example.com/image.jpg" />
+
+            @{
+                var currentImage = Model != null ? Model.Image : null;
+                bool hasImage = !string.IsNullOrEmpty(currentImage);
+                string imgSrc = null;
+                if (hasImage)
+                {
+                    bool isAbsolute = currentImage.StartsWith("http://", System.StringComparison.OrdinalIgnoreCase) || currentImage.StartsWith("https://", System.StringComparison.OrdinalIgnoreCase);
+                    imgSrc = isAbsolute ? currentImage : Url.Content("~/Uploads/AboutMe/" + currentImage);
+                }
+            }
+            @if (!string.IsNullOrEmpty(imgSrc))
+            {
+                <div class="mt-2">
+                    <img src="@imgSrc" alt="Image" style="width: 120px; height: 120px; object-fit: cover;" />
+                </div>
+            }
+
+            @Html.HiddenFor(x => x.Image)
+        </div>
+
+        <button type="submit" class="btn btn-success">Save</button>
+    }
+</div>
 

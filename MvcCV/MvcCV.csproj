@@ -131,9 +131,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AboutMeController.cs" />
     <Compile Include="Controllers\CertificateController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\EducationController.cs" />
     <Compile Include="Controllers\ExperienceController.cs" />
+    <Compile Include="Controllers\HobbyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SkillController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2371,6 +2373,10 @@
     <Content Include="Views\Certificate\Index.cshtml" />
     <Content Include="Views\Certificate\AddCertificate.cshtml" />
     <Content Include="Views\Certificate\GetCertificate.cshtml" />
+    <Content Include="Views\Hobby\Index.cshtml" />
+    <Content Include="Views\Hobby\AddHobby.cshtml" />
+    <Content Include="Views\Hobby\GetHobby.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
