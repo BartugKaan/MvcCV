@@ -1,0 +1,16 @@
+﻿@using MvcCV.Models.Entity;
+@model TBLSkill
+@{
+    ViewBag.Title = "AddSkill";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-md-12 p-5">
+    <h2>Add Skill</h2>
+    <form method="post">
+        <label>Skill</label>
+        <input type="text" name="Skill" placeholder="Enter a Skill" class="form-control" />
+        <br />
+        <button class="btn btn-success">Save</button>
+    </form>
+</div>
