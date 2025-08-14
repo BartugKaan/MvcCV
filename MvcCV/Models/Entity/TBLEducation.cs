@@ -11,14 +11,23 @@ namespace MvcCV.Models.Entity
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class TBLEducation
     {
         public int ID { get; set; }
+        [Required(ErrorMessage ="You cannot leave this field blank ")]
+        [StringLength(50, MinimumLength =5)]
         public string Title { get; set; }
+        [Required(ErrorMessage = "You cannot leave this field blank ")]
+        [StringLength(50, MinimumLength = 5)]
         public string Subtitle { get; set; }
         public string OptionalSubtitle { get; set; }
+        [Required(ErrorMessage = "You cannot leave this field blank ")]
+        [StringLength(50)]
         public string Gpa { get; set; }
+        [Required(ErrorMessage = "You cannot leave this field blank ")]
+        [StringLength(50)]
         public string Date { get; set; }
     }
 }

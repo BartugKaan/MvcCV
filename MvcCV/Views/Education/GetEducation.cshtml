@@ -1,0 +1,38 @@
+﻿@using MvcCV.Models.Entity;
+@model TBLEducation
+@{
+    ViewBag.Title = "GetEducation";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-md-12 p-5">
+    <h2>Update Education</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.Label("Education ID")
+        @Html.TextBoxFor(x => x.ID, new { @class = "form-control", @readonly = "readonly" })
+        <br />
+        @Html.Label("School Name")
+        @Html.TextBoxFor(x => x.Title, new { @class = "form-control", placeholder = "Enter a School Name", minlength = "5", maxlength = "50" })
+        @Html.ValidationMessageFor(x => x.Title, "", new { @class = "text-danger" })
+        <br />
+        @Html.Label("Departmant")
+        @Html.TextBoxFor(x => x.Subtitle, new { @class = "form-control", placeholder = "Enter a Department", minlength = "5", maxlength = "50" })
+        @Html.ValidationMessageFor(x => x.Subtitle, "", new { @class = "text-danger" })
+        <br />
+        @Html.Label("Description")
+        @Html.TextAreaFor(x => x.OptionalSubtitle, new { @class = "form-control", placeholder = "Enter a Description", rows = 5 })
+        @Html.ValidationMessageFor(x => x.OptionalSubtitle, "", new { @class = "text-danger" })
+        <br />
+        @Html.Label("Gpa")
+        @Html.TextBoxFor(x => x.Gpa, new { @class = "form-control", placeholder = "e.g. 3.50", maxlength = "10" })
+        @Html.ValidationMessageFor(x => x.Gpa, "", new { @class = "text-danger" })
+        <br />
+        @Html.Label("Date")
+        @Html.TextBoxFor(x => x.Date, new { @class = "form-control", placeholder = "e.g. Sep 2015 - Jun 2020", maxlength = "50" })
+        @Html.ValidationMessageFor(x => x.Date, "", new { @class = "text-danger" })
+        <br />
+        <button class="btn btn-success">Save</button>
+    }
+</div>
