@@ -8,26 +8,29 @@
 
 <div class="col-md-12 p-5">
     <h2>Update Experience</h2>
-    <form method="post">
+    @using (Html.BeginForm())
+    {
         @Html.Label("Experience ID")
         @Html.TextBoxFor(x => x.ID, new { @class = "form-control", @readonly = "readonly" })
         <br />
         @Html.Label("Title")
         @Html.TextBoxFor(x => x.Title, new { @class = "form-control", placeholder = "Enter a Job Title" })
+        @Html.ValidationMessageFor(x => x.Title, "", new { @class = "text-danger" })
         <br />
         @Html.Label("Company Name")
         @Html.TextBoxFor(x => x.Subtitle, new { @class = "form-control", placeholder = "Enter a Company Name" })
+        @Html.ValidationMessageFor(x => x.Subtitle, "", new { @class = "text-danger" })
         <br />
         @Html.Label("Description")
         @Html.TextAreaFor(x => x.Description, new { @class = "form-control", placeholder = "Enter a Job Description", rows = 5 })
+        @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
         <br />
         @Html.Label("Employment Period")
         @Html.TextBoxFor(x => x.Date, new { @class = "form-control", placeholder = "Enter An Employment Period" })
+        @Html.ValidationMessageFor(x => x.Date, "", new { @class = "text-danger" })
         <br />
-
-
         <button class="btn btn-success">Save</button>
-    </form>
+    }
 </div>
 
 

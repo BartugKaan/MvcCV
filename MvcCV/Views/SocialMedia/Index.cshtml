@@ -1,0 +1,132 @@
+﻿@using MvcCV.Models.Entity;
+@model List<TBLSocialMedia>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<section class="content">
+    <div class="row no-gutters">
+        <div class="col-12 px-3 py-4">
+            <div class="card shadow-sm w-100">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h3 class="card-title mb-0">
+                        <i class="fas fa-bolt mr-2"></i> SocialMedia List
+                    </h3>
+                    <div class="d-flex align-items-center">
+                        <div class="input-group input-group-sm mr-2" style="max-width: 360px;">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-light">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </div>
+                            <input id="SocialMediaSearch" type="text" class="form-control" placeholder="Search SocialMedias...">
+                            <div class="input-group-append">
+                                <button type="button" id="clearSearch" class="btn btn-outline-secondary">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button class="btn btn-success w-75 " data-toggle="modal" data-target="#modal1">
+                            Add New Social Media
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card-body p-0">
+                    <div class="table-responsive p-3">
+                        <table class="table table-striped table-hover mb-0" id="SocialMediasTable">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Icon</th>
+                                    <th>Link</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.ID</td>
+                                        <td class="SocialMedia-name">@item.Name</td>
+                                        <td><i class="@item.Icon"></i></td>
+                                        <td>@item.Link</td>
+                                        <td>
+                                            <a href="/SocialMedia/GetSocialMedia/@item.ID" class="btn btn-outline-secondary btn-sm mr-1" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="/SocialMedia/Delete/@item.ID" class="btn btn-outline-danger btn-sm" title="Delete" onclick="confirm('Delete this item?') && this.closest('tr').remove();">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                (function () {
+                    var searchInput = document.getElementById('SocialMediaSearch');
+                    var clearBtn = document.getElementById('clearSearch');
+                    var table = document.getElementById('SocialMediasTable');
+                    if (!table) return;
+
+                    var rows = table.querySelectorAll('tbody tr');
+
+                    function filter() {
+                        var q = (searchInput.value || '').toLowerCase().trim();
+                        rows.forEach(function (row) {
+                            var nameCell = row.querySelector('.SocialMedia-name');
+                            var text = (nameCell ? nameCell.textContent : '').toLowerCase();
+                            var match = !q || text.indexOf(q) !== -1;
+                            row.style.display = match ? '' : 'none';
+                        });
+                    }
+
+                    function clearSearch() {
+                        searchInput.value = '';
+                        filter();
+                        searchInput.focus();
+                    }
+
+                    if (searchInput) {
+                        searchInput.addEventListener('keyup', filter);
+                    }
+                    if (clearBtn) {
+                        clearBtn.addEventListener('click', clearSearch);
+                    }
+                })();
+            </script>
+        </div>
+    </div>
+</section>
+<div id="modal1" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Add Social Media</h2>
+            </div>
+            <form method="post" action="/SocialMedia/Add">
+                <div class="modal-body">
+                    <label>Socail Media Name</label>
+                    <input type="text" name="Name" class="form-control" />
+                    <br />
+                    <label>Socail Media Link</label>
+                    <input type="text" name="Link" class="form-control" />
+                    <br />
+                    <label>Socail Media Icon</label>
+                    <input type="text" name="Icon" class="form-control" />
+                    <br />
+                    <button class="btn btn-success">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

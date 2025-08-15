@@ -19,6 +19,12 @@ namespace MvcCV.Controllers
             return PartialView(values);
         }
 
+        public PartialViewResult SocialMedia()
+        {
+            var values = db.TBLSocialMedia.ToList();
+            return PartialView(values);
+        }
+
         public PartialViewResult Education()
         {
             var values = db.TBLEducation.ToList();

@@ -7,35 +7,26 @@
 
 <div class="col-md-12 p-5">
     <h2>Add Eucation</h2>
-    @using (Html.BeginForm())
-    {
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
+    <form method="post">
         <label>School Name</label>
-        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Enter a School Name", required = "required", minlength = "5", maxlength = "50" })
+        <input type="text" name="Title" placeholder="Enter a School Name" class="form-control" required />
         @Html.ValidationMessageFor(model => model.Title, "", new { @style = "color:red" })
         <br />
-
         <label>Departmant Name</label>
-        @Html.TextBoxFor(m => m.Subtitle, new { @class = "form-control", placeholder = "Enter a Departmant", required = "required", minlength = "5", maxlength = "50" })
-        @Html.ValidationMessageFor(model => model.Subtitle, "", new { @style = "color:red" })
+        <input type="text" name="Subtitle" placeholder="Enter a Departmant" class="form-control" required />
+        @Html.ValidationMessageFor(model => model.Title, "", new { @style = "color:red" })
         <br />
-
         <label>Description</label>
-        @Html.TextBoxFor(m => m.OptionalSubtitle, new { @class = "form-control", placeholder = "Enter a Description" })
-        @Html.ValidationMessageFor(model => model.OptionalSubtitle, "", new { @style = "color:red" })
+        <input type="text" name="OptionalSubtitle" placeholder="Enter a Description" class="form-control" required />
         <br />
-
         <label>Gpa</label>
-        @Html.TextBoxFor(m => m.Gpa, new { @class = "form-control", placeholder = "e.g. 3.50", required = "required", maxlength = "10" })
-        @Html.ValidationMessageFor(model => model.Gpa, "", new { @style = "color:red" })
+        <input type="number" name="Gpa" placeholder="Enter a Gpa" class="form-control" rows="5" required />
+        @Html.ValidationMessageFor(model => model.Title, "", new { @style = "color:red" })
         <br />
-
         <label>Date</label>
-        @Html.TextBoxFor(m => m.Date, new { @class = "form-control", placeholder = "e.g. Sep 2015 - Jun 2020", required = "required", maxlength = "50" })
-        @Html.ValidationMessageFor(model => model.Date, "", new { @style = "color:red" })
+        <input type="text" name="Date" placeholder="Enter a Date Period" class="form-control" required />
+        @Html.ValidationMessageFor(model => model.Title, "", new { @style = "color:red" })
         <br />
-
         <button class="btn btn-success">Save</button>
-    }
+    </form>
 </div>

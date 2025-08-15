@@ -1,0 +1,26 @@
+﻿@using MvcCV.Models.Entity;
+@model TBLSocialMedia
+@{
+    ViewBag.Title = "GetHobby";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-md-12 p-5">
+    <h2>Update Socail Media</h2>
+    <form method="post">
+        @Html.Label("Socail Media ID")
+        @Html.TextBoxFor(x => x.ID, new { @class = "form-control", @readonly = "readonly" })
+        <br />
+        @Html.Label("Name")
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Enter a Social Media Name" })
+        <br />
+        @Html.Label("Link")
+        @Html.TextBoxFor(x => x.Link, new { @class = "form-control", placeholder = "Enter a Social Media Link" })
+        <br />
+        @Html.Label("Icon")
+        @Html.TextBoxFor(x => x.Icon, new { @class = "form-control", placeholder = "Enter a Social Media Icon" })
+        <br />
+        <button class="btn btn-warning">Save</button>
+    </form>
+</div>
+

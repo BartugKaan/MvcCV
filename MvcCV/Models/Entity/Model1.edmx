@@ -81,6 +81,15 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Skill" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="TBLSocialMedia">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" />
+          <Property Name="Link" Type="varchar" MaxLength="50" />
+          <Property Name="Icon" Type="varchar" MaxLength="30" />
+        </EntityType>
         <EntityContainer Name="DbCvModelStoreContainer">
           <EntitySet Name="TBLAbout" EntityType="Self.TBLAbout" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLAdmin" EntityType="Self.TBLAdmin" Schema="dbo" store:Type="Tables" />
@@ -90,6 +99,7 @@
           <EntitySet Name="TBLExperience" EntityType="Self.TBLExperience" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLHobby" EntityType="Self.TBLHobby" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLSkill" EntityType="Self.TBLSkill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLSocialMedia" EntityType="Self.TBLSocialMedia" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -180,7 +190,17 @@
           <EntitySet Name="TBLExperience" EntityType="Self.TBLExperience" />
           <EntitySet Name="TBLHobby" EntityType="Self.TBLHobby" />
           <EntitySet Name="TBLSkill" EntityType="Self.TBLSkill" />
+          <EntitySet Name="TBLSocialMedia" EntityType="DbCvModel.TBLSocialMedia" />
         </EntityContainer>
+        <EntityType Name="TBLSocialMedia">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Link" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Icon" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -268,6 +288,16 @@
               <MappingFragment StoreEntitySet="TBLSkill">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Skill" ColumnName="Skill" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLSocialMedia">
+            <EntityTypeMapping TypeName="DbCvModel.TBLSocialMedia">
+              <MappingFragment StoreEntitySet="TBLSocialMedia">
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
