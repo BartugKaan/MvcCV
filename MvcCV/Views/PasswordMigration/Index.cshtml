@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "Password Migration";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-md-12 p-5">
+    <div class="card">
+        <div class="card-header bg-warning text-dark">
+        </div>
+        <div class="card-body">
+            
+            @if (ViewBag.SuccessMessage != null)
+            {
+                <div class="alert alert-success">
+                    <i class="fa fa-check"></i> @ViewBag.SuccessMessage
+                </div>
+            }
+            
+            @if (ViewBag.ErrorMessage != null)
+            {
+                <div class="alert alert-danger">
+                    <i class="fa fa-exclamation-triangle"></i> @ViewBag.ErrorMessage
+                </div>
+            }
+            
+            @if (ViewBag.StatusMessage != null)
+            {
+                <div class="alert @ViewBag.StatusClass">
+                    @ViewBag.StatusMessage
+                </div>
+            }
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Şifre Durumu Kontrolü</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Veritabanındaki tüm şifrelerin hash formatında olup olmadığını kontrol eder.</p>
+                            <a href="@Url.Action("CheckPasswordStatus", "PasswordMigration")" class="btn btn-info">
+                                <i class="fa fa-search"></i> Durumu Kontrol Et
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-danger text-white">
+                            <h5>⚠️ Şifre Migration</h5>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>TEHLİKELİ İŞLEM:</strong> Tüm düz metin şifreleri hash formatına çevirir.</p>
+                            <p><small class="text-muted">Bu işlem sadece bir kez yapılmalıdır!</small></p>
+                            <button type="button" class="btn btn-danger" onclick="confirmMigration()">
+                                <i class="fa fa-key"></i> Şifreleri Hash'le
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Migration Hakkında Bilgiler</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <strong>BCrypt Hash:</strong> Modern ve güvenli şifreleme algoritması kullanılır
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Work Factor:</strong> 12 (yüksek güvenlik seviyesi)
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Salt:</strong> Her şifre için otomatik olarak benzersiz salt oluşturulur
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Güvenlik:</strong> Rainbow table ve brute force saldırılarına karşı korumalıdır
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-3">
+                <a href="@Url.Action("Index", "Admin")" class="btn btn-secondary">
+                    <i class="fa fa-arrow-left"></i> Admin Paneline Geri Dön
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function confirmMigration() {
+        if (confirm('UYARI: Bu işlem tüm düz metin şifreleri hash formatına çevirecektir.\n\nBu işlem geri alınamaz ve sadece bir kez yapılmalıdır.\n\nDevam etmek istediğinizden emin misiniz?')) {
+            if (confirm('Son uyarı: Bu işlem veritabanını değiştirecektir.\n\nGerçekten devam etmek istiyor musunuz?')) {
+                window.location.href = '@Url.Action("MigrateAllPasswords", "PasswordMigration")';
+            }
+        }
+    }
+</script>

@@ -1,0 +1,77 @@
+﻿@using MvcCV.Models.Entity;
+@model TBLAdmin
+
+@{
+    ViewBag.Title = "Update User";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-md-12 p-5">
+    <h2>Update User</h2>
+    
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+    }
+    
+    @if (ViewBag.SuccessMessage != null)
+    {
+        <div class="alert alert-success">@ViewBag.SuccessMessage</div>
+    }
+    
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(x => x.ID)
+        
+        @Html.Label("User ID")
+        @Html.TextBoxFor(x => x.ID, new { @class = "form-control", @readonly = "readonly" })
+        <br />
+        
+        @Html.Label("Username")
+        @Html.TextBoxFor(x => x.Username, new { @class = "form-control", placeholder = "Enter a Valid Username", @required = "required", @minlength = "3" })
+        @Html.ValidationMessageFor(x => x.Username, "", new { @class = "text-danger" })
+        <br />
+        
+        @Html.Label("New Password")
+        @Html.PasswordFor(x => x.Password, new { @class = "form-control", placeholder = "Enter New Password (leave empty to keep current)", @autocomplete = "new-password", @minlength = "6" })
+        @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+        <small class="form-text text-muted">If you do not want to change password, leave it empty.</small>
+        <br />
+        
+        <button type="submit" class="btn btn-success">Update User</button>
+        <a href="@Url.Action("Index", "Admin")" class="btn btn-secondary">Cancel</a>
+    }
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const passwordField = document.querySelector('input[name="Password"]');
+        const form = document.querySelector('form');
+        
+        if (passwordField && form) {
+            form.addEventListener('submit', function(e) {
+                const password = passwordField.value;
+                
+                if (password && password.length > 0) {
+                    if (password.length < 6) {
+                        alert('Şifre en az 6 karakter olmalıdır.');
+                        e.preventDefault();
+                        return false;
+                    }
+                    
+                    const hasLetter = /[a-zA-Z]/.test(password);
+                    const hasNumber = /[0-9]/.test(password);
+                    
+                    if (!hasLetter || !hasNumber) {
+                        const result = confirm('Şifreniz en az bir harf ve bir rakam içermelidir. Devam etmek istediğinizden emin misiniz?');
+                        if (!result) {
+                            e.preventDefault();
+                            return false;
+                        }
+                    }
+                }
+            });
+        }
+    });
+</script>
