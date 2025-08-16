@@ -31,6 +31,11 @@ A comprehensive ASP.NET MVC web application for creating and managing a personal
 - **Architecture**: Repository Pattern with Generic Repository
 - **Security**: Custom authentication attributes, password hashing (PBKDF2)
 
+## 🖼️ Project Images
+<img width="2559" height="1276" alt="Default View" src="https://github.com/user-attachments/assets/c0801c83-d66f-4590-b054-375a98600b2e" />
+<img width="2556" height="1278" alt="Login View" src="https://github.com/user-attachments/assets/2053d591-69a7-4154-94bc-08ddc0528dfc" />
+<img width="2558" height="1279" alt="AdminView" src="https://github.com/user-attachments/assets/f53f54b5-b8ce-46ca-ad40-fa3cf6f48e76" />
+
 ## 📁 Project Structure
 
 ```
